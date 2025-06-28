@@ -1,0 +1,26 @@
+# Bible Reference Standardizer Requirements
+
+# Core dependency for .docx files
+python-docx>=1.2.0
+
+# Additional file format support
+# For .doc files (legacy Word documents)
+python-docx2txt>=0.8
+
+# For PDF files
+PyPDF2>=3.0.0
+
+# For HTML files
+beautifulsoup4>=4.9.0
+lxml>=4.6.0
+
+# Standard library modules (usually included with Python):
+# - os, re, csv, logging, shutil, datetime
+# - sys, argparse, glob, pathlib, typing
+# - html.parser (for basic HTML processing)
+
+# Optional: For better HTML processing
+# html5lib>=1.1
+
+# For Python < 3.8, you might need:
+# typing-extensions>=4.9.0

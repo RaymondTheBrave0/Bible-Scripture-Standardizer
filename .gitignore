@@ -1,0 +1,113 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+# Backup files created by the standardizer
+*_backup_*.pdf
+*_backup_*.docx
+*_backup_*.doc
+*_backup_*.txt
+*_backup_*.html
+*_backup_*.htm
+
+# Temporary conversion files
+*_converted.docx
+*_processed.*
+
+# Test files and outputs
+test_documents/
+sample_outputs/
+temp_*
+
+# Logs
+*.log
+logs/
+
+# Configuration files with sensitive data
+config.ini
+settings.json
+
+# Keep essential project files
+!Bible-Books-Abbr.csv
+!requirements.txt
+!README.md
+!*.py
+
+# System files
+.DS_Store
+Thumbs.db
+.log
+*.log
+
+# Document processing temporary files
+*.tmp
+*.temp
