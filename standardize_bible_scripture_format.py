@@ -31,9 +31,9 @@ from docx import Document
 from docx.text.paragraph import Paragraph
 from docx.text.run import Run
 
-# Configure logging
+# Configure logging - default to WARNING level, can be changed by CLI
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.WARNING,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)

@@ -10,6 +10,7 @@ import sys
 import argparse
 import os
 import glob
+import logging
 from pathlib import Path
 from standardize_bible_scripture_format import BibleReferenceStandardizer, process_any_file
 
@@ -73,8 +74,10 @@ Examples:
     args = parser.parse_args()
     
     try:
-        # Initialize the standardizer
+        # Set logging level based on verbose flag
         if args.verbose:
+            logging.getLogger('standardize_bible_scripture_format').setLevel(logging.INFO)
+            logging.getLogger('pdf_text_cleaner').setLevel(logging.INFO)
             print("Initializing Bible reference standardizer...")
         
         standardizer = BibleReferenceStandardizer(args.csv)
