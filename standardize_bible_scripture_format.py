@@ -394,7 +394,7 @@ class BibleReferenceStandardizer:
 
 
 # Multi-format file processing functions
-def process_html_file(file_path: str, standardizer) -> Dict:
+def process_html_file(file_path: str, standardizer, create_backup: bool = True) -> Dict:
     """
     Process an HTML file to standardize Bible references.
     
@@ -426,12 +426,13 @@ def process_html_file(file_path: str, standardizer) -> Dict:
             result['error'] = "BeautifulSoup4 not installed. Install with: pip install beautifulsoup4"
             return result
         
-        # Backup the original file
-        backup_success, backup_path = standardizer.create_backup(file_path)
-        if not backup_success:
-            result['error'] = f"Failed to create backup: {backup_path}"
-            return result
-        result['backup_path'] = backup_path
+        # Backup the original file if requested
+        if create_backup:
+            backup_success, backup_path = standardizer.create_backup(file_path)
+            if not backup_success:
+                result['error'] = f"Failed to create backup: {backup_path}"
+                return result
+            result['backup_path'] = backup_path
         
         # Read and parse HTML
         with open(file_path, 'r', encoding='utf-8') as html_file:
@@ -470,7 +471,7 @@ def process_html_file(file_path: str, standardizer) -> Dict:
     return result
 
 
-def process_pdf_file(file_path: str, standardizer) -> Dict:
+def process_pdf_file(file_path: str, standardizer, create_backup: bool = True) -> Dict:
     """
     Process a PDF file to standardize Bible references.
     Converts PDF to DOCX first to preserve formatting, then processes normally.
@@ -498,12 +499,13 @@ def process_pdf_file(file_path: str, standardizer) -> Dict:
     start_time = datetime.now()
     
     try:
-        # Create backup of original PDF
-        backup_success, backup_path = standardizer.create_backup(file_path)
-        if not backup_success:
-            result['error'] = f"Failed to create backup: {backup_path}"
-            return result
-        result['backup_path'] = backup_path
+        # Create backup of original PDF if requested
+        if create_backup:
+            backup_success, backup_path = standardizer.create_backup(file_path)
+            if not backup_success:
+                result['error'] = f"Failed to create backup: {backup_path}"
+                return result
+            result['backup_path'] = backup_path
         
         # Step 1: Convert PDF to DOCX
         docx_path = file_path.replace('.pdf', '_converted.docx')
@@ -790,7 +792,7 @@ def process_pdf_file(file_path: str, standardizer) -> Dict:
     return result
 
 
-def process_txt_file(file_path: str, standardizer) -> Dict:
+def process_txt_file(file_path: str, standardizer, create_backup: bool = True) -> Dict:
     """
     Process a plain text file to standardize Bible references.
     
@@ -815,12 +817,13 @@ def process_txt_file(file_path: str, standardizer) -> Dict:
     start_time = datetime.now()
     
     try:
-        # Backup the original file
-        backup_success, backup_path = standardizer.create_backup(file_path)
-        if not backup_success:
-            result['error'] = f"Failed to create backup: {backup_path}"
-            return result
-        result['backup_path'] = backup_path
+        # Backup the original file if requested
+        if create_backup:
+            backup_success, backup_path = standardizer.create_backup(file_path)
+            if not backup_success:
+                result['error'] = f"Failed to create backup: {backup_path}"
+                return result
+            result['backup_path'] = backup_path
         
         # Read file
         with open(file_path, 'r', encoding='utf-8') as txt_file:
@@ -855,7 +858,7 @@ def process_txt_file(file_path: str, standardizer) -> Dict:
     return result
 
 
-def process_doc_file(file_path: str, standardizer) -> Dict:
+def process_doc_file(file_path: str, standardizer, create_backup: bool = True) -> Dict:
     """
     Process a legacy DOC file to standardize Bible references.
     Note: This extracts text from DOC files and saves as processed text.
@@ -889,12 +892,13 @@ def process_doc_file(file_path: str, standardizer) -> Dict:
             result['error'] = "docx2txt not installed. Install with: pip install docx2txt"
             return result
         
-        # Backup the original file
-        backup_success, backup_path = standardizer.create_backup(file_path)
-        if not backup_success:
-            result['error'] = f"Failed to create backup: {backup_path}"
-            return result
-        result['backup_path'] = backup_path
+        # Backup the original file if requested
+        if create_backup:
+            backup_success, backup_path = standardizer.create_backup(file_path)
+            if not backup_success:
+                result['error'] = f"Failed to create backup: {backup_path}"
+                return result
+            result['backup_path'] = backup_path
         
         # Extract text from DOC file
         try:
@@ -953,13 +957,13 @@ def process_any_file(file_path: str, csv_path: Optional[str] = None,
     if file_extension == '.docx':
         return standardizer.process_document(file_path, output_path, create_backup)
     elif file_extension == '.html' or file_extension == '.htm':
-        return process_html_file(file_path, standardizer)
+        return process_html_file(file_path, standardizer, create_backup)
     elif file_extension == '.pdf':
-        return process_pdf_file(file_path, standardizer)
+        return process_pdf_file(file_path, standardizer, create_backup)
     elif file_extension == '.txt':
-        return process_txt_file(file_path, standardizer)
+        return process_txt_file(file_path, standardizer, create_backup)
     elif file_extension == '.doc':
-        return process_doc_file(file_path, standardizer)
+        return process_doc_file(file_path, standardizer, create_backup)
     else:
         return {
             'success': False,
