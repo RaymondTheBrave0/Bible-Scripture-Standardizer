@@ -111,3 +111,4 @@ Thumbs.db
 # Document processing temporary files
 *.tmp
 *.temp
+.secrets.baseline

@@ -1,0 +1,19 @@
+secret:
+  ignored_paths:
+  - .git/
+  - '*.sqlite*'
+  - '*.pickle'
+  - '*.log'
+  - data/
+  - logs/
+  - '*.pyo'
+  - output/
+  - '*.pyc'
+  - databases/*/documents/*.doc
+  - node_modules/
+  - databases/*/documents/*.docx
+  - databases/*/vector_db/
+  - databases/*/documents/*.odt
+  - __pycache__/
+  - '*.db'
+version: 2
